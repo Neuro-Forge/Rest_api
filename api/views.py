@@ -5,7 +5,10 @@ from .serializers import studentserializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 # Create your views here.
+from .serializers import employeserializer
+from employe.models import employe as EmployeModel
 
 @api_view(['GET','POST'])
 def index(request):
@@ -60,3 +63,12 @@ def student_views(request,id):
    elif request.method == 'DELETE':
       student.delete()
       return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+class employe(APIView):
+    def get(self, request):
+       qs = EmployeModel.objects.all()
+       serializer = employeserializer(qs, many=True)
+       return Response(serializer.data, status=status.HTTP_200_OK)
+
+
