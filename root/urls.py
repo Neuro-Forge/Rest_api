@@ -21,5 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
     path('api/', include('api.urls')),
-    path('employe/', include('employe.urls'))
+    path('employe/', include('employe.urls')),
+    path('shibin/', include('shibin.urls')),
+    
         ]
